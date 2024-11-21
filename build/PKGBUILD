@@ -1,0 +1,21 @@
+# Maintainer: Swarnava Ghosh <swarnavaghosh04@gmail.com>
+
+pkgname=gr-sprobe
+pkgver=1.0.0
+pkgrel=1
+pkgdesc=""
+arch=('any')
+license=('GPL')
+depends=('gnuradio' 'libsndfile')
+source=()
+md5sums=()
+url="https://github.com/swarnavaghosh04/gr-sprobe"
+build(){
+  cd ..
+  cmake .. -DCMAKE_INSTALL_PREFIX="/usr"
+  cmake --build .
+}
+package() {
+  cd ..
+  DESTDIR="$pkgdir" cmake --install .
+}

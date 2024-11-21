@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/swarnava/devel/gr-sprobe/build/lib",
+  "command": "/usr/bin/c++ -DBOOST_THREAD_DYN_LINK -DBOOST_THREAD_NO_LIB -DFMT_SHARED -DGR_CTRLPORT -DGR_MPLIB_GMP -DGR_PERFORMANCE_COUNTERS -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -Dgnuradio_sprobe_EXPORTS -I/home/swarnava/devel/gr-sprobe/lib/../include  -fvisibility=hidden -Wsign-compare -Wall -Wno-uninitialized -Wignored-qualifiers -Wcast-qual -O3 -DNDEBUG -std=c++17 -fPIC -o CMakeFiles/gnuradio-sprobe.dir/sample_counter_impl.cc.o -c /home/swarnava/devel/gr-sprobe/lib/sample_counter_impl.cc",
+  "file": "/home/swarnava/devel/gr-sprobe/lib/sample_counter_impl.cc",
+  "output": "lib/CMakeFiles/gnuradio-sprobe.dir/sample_counter_impl.cc.o"
+},
+{
+  "directory": "/home/swarnava/devel/gr-sprobe/build/python/sprobe/bindings",
+  "command": "/usr/bin/c++ -DBOOST_DATE_TIME_DYN_LINK -DBOOST_DATE_TIME_NO_LIB -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_NO_LIB -DBOOST_REGEX_DYN_LINK -DBOOST_REGEX_NO_LIB -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -DBOOST_THREAD_DYN_LINK -DBOOST_THREAD_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -DBOOST_UNIT_TEST_FRAMEWORK_NO_LIB -DFMT_SHARED -DGR_CTRLPORT -DGR_MPLIB_GMP -DGR_PERFORMANCE_COUNTERS -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -Dsprobe_python_EXPORTS -I/home/swarnava/devel/gr-sprobe/build/python/sprobe/bindings -I/home/swarnava/devel/gr-sprobe/python/sprobe/bindings/../../../lib -I/home/swarnava/devel/gr-sprobe/python/sprobe/bindings/../../../include -I/home/swarnava/devel/gr-sprobe/lib/../include -isystem /usr/include/python3.12 -isystem /usr/lib/python3.12/site-packages/numpy/_core/include  -fvisibility=hidden -Wsign-compare -Wall -Wno-uninitialized -Wignored-qualifiers -Wcast-qual -O3 -DNDEBUG -std=c++17 -fPIC -fvisibility=hidden -Wno-unused-variable -flto -fno-fat-lto-objects -o CMakeFiles/sprobe_python.dir/sample_counter_python.cc.o -c /home/swarnava/devel/gr-sprobe/python/sprobe/bindings/sample_counter_python.cc",
+  "file": "/home/swarnava/devel/gr-sprobe/python/sprobe/bindings/sample_counter_python.cc",
+  "output": "python/sprobe/bindings/CMakeFiles/sprobe_python.dir/sample_counter_python.cc.o"
+},
+{
+  "directory": "/home/swarnava/devel/gr-sprobe/build/python/sprobe/bindings",
+  "command": "/usr/bin/c++ -DBOOST_DATE_TIME_DYN_LINK -DBOOST_DATE_TIME_NO_LIB -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_NO_LIB -DBOOST_REGEX_DYN_LINK -DBOOST_REGEX_NO_LIB -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -DBOOST_THREAD_DYN_LINK -DBOOST_THREAD_NO_LIB -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -DBOOST_UNIT_TEST_FRAMEWORK_NO_LIB -DFMT_SHARED -DGR_CTRLPORT -DGR_MPLIB_GMP -DGR_PERFORMANCE_COUNTERS -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DSPDLOG_SHARED_LIB -Dsprobe_python_EXPORTS -I/home/swarnava/devel/gr-sprobe/build/python/sprobe/bindings -I/home/swarnava/devel/gr-sprobe/python/sprobe/bindings/../../../lib -I/home/swarnava/devel/gr-sprobe/python/sprobe/bindings/../../../include -I/home/swarnava/devel/gr-sprobe/lib/../include -isystem /usr/include/python3.12 -isystem /usr/lib/python3.12/site-packages/numpy/_core/include  -fvisibility=hidden -Wsign-compare -Wall -Wno-uninitialized -Wignored-qualifiers -Wcast-qual -O3 -DNDEBUG -std=c++17 -fPIC -fvisibility=hidden -Wno-unused-variable -flto -fno-fat-lto-objects -o CMakeFiles/sprobe_python.dir/python_bindings.cc.o -c /home/swarnava/devel/gr-sprobe/python/sprobe/bindings/python_bindings.cc",
+  "file": "/home/swarnava/devel/gr-sprobe/python/sprobe/bindings/python_bindings.cc",
+  "output": "python/sprobe/bindings/CMakeFiles/sprobe_python.dir/python_bindings.cc.o"
+}
+]
