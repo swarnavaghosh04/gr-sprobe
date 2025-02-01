@@ -13,7 +13,7 @@ include(GrPlatform) #define LIB_SUFFIX
 
 list(APPEND sprobe_sources
     sample_counter_impl.cc
-    packet_extractor_impl.cc)
+    unguard_tagged_stream_impl.cc)
 
 set(sprobe_sources
     "${sprobe_sources}"

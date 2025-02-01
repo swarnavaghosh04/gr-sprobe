@@ -5,16 +5,16 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#ifndef INCLUDED_SPROBE_PACKET_EXTRACTOR_IMPL_H
-#define INCLUDED_SPROBE_PACKET_EXTRACTOR_IMPL_H
+#ifndef INCLUDED_SPROBE_UNGUARD_TAGGED_STREAM_IMPL_H
+#define INCLUDED_SPROBE_UNGUARD_TAGGED_STREAM_IMPL_H
 
-#include <gnuradio/sprobe/packet_extractor.h>
+#include <gnuradio/sprobe/unguard_tagged_stream.h>
 
 namespace gr {
 namespace sprobe {
 
 template<class IN_T>
-class packet_extractor_impl : public packet_extractor<IN_T>
+class unguard_tagged_stream_impl : public unguard_tagged_stream<IN_T>
 {
 private:
     std::string d_start_tag_name;
@@ -22,8 +22,8 @@ private:
     int d_remaining;
 
 public:
-    packet_extractor_impl(const std::string& start_tag_name, const std::string& end_tag_name);
-    ~packet_extractor_impl();
+    unguard_tagged_stream_impl(const std::string& start_tag_name, const std::string& end_tag_name);
+    ~unguard_tagged_stream_impl();
 
     const std::string& start_tag_name() const override;
     const std::string& end_tag_name() const override;
@@ -43,4 +43,4 @@ public:
 } // namespace sprobe
 } // namespace gr
 
-#endif /* INCLUDED_SPROBE_PACKET_EXTRACTOR_IMPL_H */
+#endif /* INCLUDED_SPROBE_UNGUARD_TAGGED_STREAM_IMPL_H */

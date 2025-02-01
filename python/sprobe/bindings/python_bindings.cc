@@ -22,7 +22,7 @@ namespace py = pybind11;
 /**************************************/
 // BINDING_FUNCTION_PROTOTYPES(
     void bind_sample_counter(py::module& m);
-    void bind_packet_extractor(py::module& m);
+    void bind_unguard_tagged_stream(py::module& m);
 // ) END BINDING_FUNCTION_PROTOTYPES
 
 
@@ -52,6 +52,6 @@ PYBIND11_MODULE(sprobe_python, m)
     /**************************************/
     // BINDING_FUNCTION_CALLS(
     bind_sample_counter(m);
-    bind_packet_extractor(m);
+    bind_unguard_tagged_stream(m);
     // ) END BINDING_FUNCTION_CALLS
 }

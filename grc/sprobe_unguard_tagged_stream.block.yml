@@ -1,5 +1,5 @@
-id: sprobe_packet_extractor_x
-label: Packet Extractor
+id: sprobe_unguard_tagged_stream_x
+label: Guard Tagged Stream
 flags: [ python, cpp ]
 category: '[sprobe]'
 
@@ -43,15 +43,15 @@ outputs:
 
 templates:
   imports: from gnuradio import sprobe
-  make: sprobe.packet_extractor_${in_type.fcn}(${start_tag_name}, ${end_tag_name})
+  make: sprobe.unguard_tagged_stream_${in_type.fcn}(${start_tag_name}, ${end_tag_name})
   callbacks:
   - set_start_tag_name(${start_tag_name})
   - set_end_tag_name(${end_tag_name})
 
 cpp_templates:
-  includes: ['#include <gnuradio/sprobe/packet_extractor.h>']
-  declarations: 'sprobe::packet_extractor_${in_type.fcn}::sptr ${id};'
-  make: 'this->${id} = sprobe::packet_extractor_${in_type.fcn}::make(${msg});'
+  includes: ['#include <gnuradio/sprobe/unguard_tagged_stream.h>']
+  declarations: 'sprobe::unguard_tagged_stream_${in_type.fcn}::sptr ${id};'
+  make: 'this->${id} = sprobe::unguard_tagged_stream_${in_type.fcn}::make(${msg});'
   callbacks:
   - set_start_tag_name(${start_tag_name})
   - set_end_tag_name(${end_tag_name})

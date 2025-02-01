@@ -5,16 +5,16 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-#include "packet_extractor_impl.h"
+#include "unguard_tagged_stream_impl.h"
 #include <gnuradio/io_signature.h>
 
 namespace gr {
 namespace sprobe {
 
 template<class IN_T>
-typename packet_extractor<IN_T>::sptr packet_extractor<IN_T>::make(const std::string& start_tag_name, const std::string& end_tag_name)
+typename unguard_tagged_stream<IN_T>::sptr unguard_tagged_stream<IN_T>::make(const std::string& start_tag_name, const std::string& end_tag_name)
 {
-    return gnuradio::make_block_sptr<packet_extractor_impl<IN_T>>(start_tag_name, end_tag_name);
+    return gnuradio::make_block_sptr<unguard_tagged_stream_impl<IN_T>>(start_tag_name, end_tag_name);
 }
 
 
@@ -22,8 +22,8 @@ typename packet_extractor<IN_T>::sptr packet_extractor<IN_T>::make(const std::st
  * The private constructor
  */
 template<class IN_T>
-packet_extractor_impl<IN_T>::packet_extractor_impl(const std::string& start_tag_name, const std::string& end_tag_name):
-    gr::block("packet_extractor",
+unguard_tagged_stream_impl<IN_T>::unguard_tagged_stream_impl(const std::string& start_tag_name, const std::string& end_tag_name):
+    gr::block("unguard_tagged_stream",
         gr::io_signature::make(1, 1, sizeof(IN_T)),
         gr::io_signature::make(1, 1, sizeof(IN_T))),
     d_start_tag_name(start_tag_name),
@@ -37,25 +37,25 @@ packet_extractor_impl<IN_T>::packet_extractor_impl(const std::string& start_tag_
  * Our virtual destructor.
  */
 template<class IN_T>
-packet_extractor_impl<IN_T>::~packet_extractor_impl() {}
+unguard_tagged_stream_impl<IN_T>::~unguard_tagged_stream_impl() {}
 
 template<class IN_T>
-const std::string& packet_extractor_impl<IN_T>::start_tag_name() const{ return d_start_tag_name; }
+const std::string& unguard_tagged_stream_impl<IN_T>::start_tag_name() const{ return d_start_tag_name; }
 template<class IN_T>
-const std::string& packet_extractor_impl<IN_T>::end_tag_name() const{ return d_end_tag_name; }
+const std::string& unguard_tagged_stream_impl<IN_T>::end_tag_name() const{ return d_end_tag_name; }
 template<class IN_T>
-void packet_extractor_impl<IN_T>::set_start_tag_name(const std::string& start_tag_name){ d_start_tag_name = start_tag_name; }
+void unguard_tagged_stream_impl<IN_T>::set_start_tag_name(const std::string& start_tag_name){ d_start_tag_name = start_tag_name; }
 template<class IN_T>
-void packet_extractor_impl<IN_T>::set_end_tag_name(const std::string& end_tag_name){ d_end_tag_name = end_tag_name; }
+void unguard_tagged_stream_impl<IN_T>::set_end_tag_name(const std::string& end_tag_name){ d_end_tag_name = end_tag_name; }
 
 template<class IN_T>
-void packet_extractor_impl<IN_T>::forecast(int noutput_items, gr_vector_int& ninput_items_required)
+void unguard_tagged_stream_impl<IN_T>::forecast(int noutput_items, gr_vector_int& ninput_items_required)
 {
     ninput_items_required[0] = noutput_items;
 }
 
 template<class IN_T>
-int packet_extractor_impl<IN_T>::general_work(int noutput_items,
+int unguard_tagged_stream_impl<IN_T>::general_work(int noutput_items,
                                    gr_vector_int& ninput_items,
                                    gr_vector_const_void_star& input_items,
                                    gr_vector_void_star& output_items)
@@ -123,11 +123,11 @@ int packet_extractor_impl<IN_T>::general_work(int noutput_items,
     }
 }
 
-template class packet_extractor<gr_complex>;
-template class packet_extractor<float>;
-template class packet_extractor<std::uint8_t>;
-template class packet_extractor<std::int16_t>;
-template class packet_extractor<std::int32_t>;
+template class unguard_tagged_stream<gr_complex>;
+template class unguard_tagged_stream<float>;
+template class unguard_tagged_stream<std::uint8_t>;
+template class unguard_tagged_stream<std::int16_t>;
+template class unguard_tagged_stream<std::int32_t>;
 
 } /* namespace sprobe */
 } /* namespace gr */

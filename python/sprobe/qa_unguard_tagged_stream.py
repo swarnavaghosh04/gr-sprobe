@@ -17,7 +17,7 @@ except ImportError:
     sys.path.append(os.path.join(dirname, "bindings"))
     from gnuradio.sprobe import stream_test
 
-class qa_packet_extractor(gr_unittest.TestCase):
+class qa_unguard_tagged_stream(gr_unittest.TestCase):
 
     def setUp(self):
         self.tb = gr.top_block()
@@ -36,4 +36,4 @@ class qa_packet_extractor(gr_unittest.TestCase):
 
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_packet_extractor)
+    gr_unittest.run(qa_unguard_tagged_stream)

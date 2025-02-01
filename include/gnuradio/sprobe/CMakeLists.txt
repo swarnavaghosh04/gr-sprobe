@@ -11,4 +11,4 @@
 ########################################################################
 install(FILES api.h
     sample_counter.h
-    packet_extractor.h DESTINATION include/gnuradio/sprobe)
+    unguard_tagged_stream.h DESTINATION include/gnuradio/sprobe)
