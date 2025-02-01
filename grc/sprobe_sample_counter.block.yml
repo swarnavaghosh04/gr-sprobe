@@ -37,8 +37,8 @@ inputs:
   dtype: ${ in_type }
 
 outputs:
-- domain: stream
-  dtype: ${ in_type }
+# - domain: stream
+#   dtype: ${ in_type }
 
 templates:
   imports: from gnuradio import sprobe
