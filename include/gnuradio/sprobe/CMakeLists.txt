@@ -10,4 +10,5 @@
 # Install public header files
 ########################################################################
 install(FILES api.h
-    sample_counter.h DESTINATION include/gnuradio/sprobe)
+    sample_counter.h
+    packet_extractor.h DESTINATION include/gnuradio/sprobe)

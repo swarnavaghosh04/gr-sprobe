@@ -25,7 +25,8 @@ include(GrPybind)
 ########################################################################
 
 list(APPEND sprobe_python_files
-    sample_counter_python.cc python_bindings.cc)
+    sample_counter_python.cc
+    packet_extractor_python.cc python_bindings.cc)
 
 gr_pybind_make_oot(sprobe ../../.. gr::sprobe "${sprobe_python_files}")
 
