@@ -69,6 +69,7 @@ int packet_extractor_impl<IN_T>::general_work(int noutput_items,
     if(d_remaining > 0){
         int nproc = noutput_items < d_remaining ? noutput_items : d_remaining;
         this->get_tags_in_window(tags, 0, 0, nproc);
+        std::sort(tags.begin(), tags.end(), [](const tag_t& a, const tag_t& b){return a.offset < b.offset;});
         memcpy(out, in, nproc*sizeof(IN_T));
         for(tag_t& tag: tags){
             tag.offset -= this->nitems_read(0);
