@@ -37,11 +37,8 @@ inputs:
   dtype: ${ in_type }
 
 outputs:
-#- label: ...
-#  domain: ...
-#  dtype: ...
-#  vlen: ...
-#  optional: ...
+- domain: stream
+  dtype: ${ in_type }
 
 templates:
   imports: from gnuradio import sprobe
@@ -51,8 +48,8 @@ templates:
 
 cpp_templates:
   includes: ['#include <gnuradio/sprobe/sample_counter.h>']
-  declarations: 'digital::sample_counter_${in_type.fcn}::sptr ${id};'
-  make: 'this->${id} = digital::sample_counter_${in_type.fcn}::make(${msg});'
+  declarations: 'sprobe::sample_counter_${in_type.fcn}::sptr ${id};'
+  make: 'this->${id} = sprobe::sample_counter_${in_type.fcn}::make(${msg});'
   callbacks:
   - set_msg(${msg})
 
