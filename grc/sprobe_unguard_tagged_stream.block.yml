@@ -1,5 +1,5 @@
 id: sprobe_unguard_tagged_stream_x
-label: Guard Tagged Stream
+label: Unguard Tagged Stream
 flags: [ python, cpp ]
 category: '[sprobe]'
 
