@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(guard_tagged_stream.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(2082fbdc7e1698188c7a143ec3b9c02c)                     */
+/* BINDTOOL_HEADER_FILE_HASH(0bb1806b554f2dbd03088450d4723601)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -41,7 +41,11 @@ void bind_guard_tagged_stream_template(py::module& m, const char* classname){
         
         .def(
             py::init(&guard_tagged_stream::make),
-            py::arg("length_tag_key") = "packet_len");
+            py::arg("length_tag_key") = "packet_len",
+            py::arg("end_tag_key") = "packet_end")
+        .def("end_tag_key", &guard_tagged_stream::end_tag_key)
+        .def("set_end_tag_key", &guard_tagged_stream::set_end_tag_key, py::arg("end_tag_key"));
+        
 }
 
 void bind_guard_tagged_stream(py::module& m) {
