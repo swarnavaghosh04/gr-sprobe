@@ -20,7 +20,8 @@ private:
     std::string d_end_tag_key;
 
 protected:
-    int calculate_output_stream_length(const gr_vector_int& ninput_items);
+    int calculate_output_stream_length(const gr_vector_int& ninput_items) override;
+    void update_length_tags(int n_produced, int n_ports) override;
 
 public:
     guard_tagged_stream_impl(const std::string& length_tag_key, const std::string& end_tag_key);

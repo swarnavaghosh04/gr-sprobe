@@ -27,7 +27,9 @@ guard_tagged_stream_impl<IN_T>::guard_tagged_stream_impl(const std::string& leng
         gr::io_signature::make(1, 1, sizeof(IN_T)),
         length_tag_key),
     d_end_tag_key(end_tag_key)
-{}
+{
+    this->set_tag_propagation_policy(gr::block::TPP_DONT);
+}
 
 /*
  * Our virtual destructor.
@@ -45,6 +47,11 @@ int guard_tagged_stream_impl<IN_T>::calculate_output_stream_length(
     const gr_vector_int& ninput_items)
 {
     return ninput_items[0]+1;
+}
+
+template<class IN_T>
+void guard_tagged_stream_impl<IN_T>::update_length_tags(int n_produced, int n_ports){
+    tagged_stream_block::update_length_tags(n_produced-1, n_ports);
 }
 
 template<class IN_T>
@@ -66,6 +73,15 @@ int guard_tagged_stream_impl<IN_T>::work(int noutput_items,
         pmt::intern(d_end_tag_key),
         pmt::from_long(1),
         pmt::PMT_F);
+
+    std::vector<tag_t> tags;
+    this->get_tags_in_window(tags, 0, 0, nin);
+    std::for_each(tags.begin(), tags.end(), [&](tag_t& tag){
+        tag.offset -= this->nitems_read(0);
+        tag.offset += this->nitems_written(0);
+        this->add_item_tag(0, tag);
+    });
+
     return nin+1;
 }
 
