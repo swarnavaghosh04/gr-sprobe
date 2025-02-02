@@ -56,7 +56,9 @@ int guard_tagged_stream_impl<IN_T>::work(int noutput_items,
     auto in = static_cast<const IN_T*>(input_items[0]);
     auto out = static_cast<IN_T*>(output_items[0]);
     int nin = ninput_items[0];
-    
+
+    if(noutput_items < nin+1) return 0;
+
     memcpy(out, in, nin*sizeof(IN_T));
     out[nin] = static_cast<IN_T>(0);
     this->add_item_tag(0,
