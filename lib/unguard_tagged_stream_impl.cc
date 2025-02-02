@@ -76,8 +76,9 @@ int unguard_tagged_stream_impl<IN_T>::general_work(int noutput_items,
             tag.offset += this->nitems_written(0);
             this->add_item_tag(0, tag);
         }
-        this->consume_each(nproc+1);
         d_remaining -= nproc;
+        if(d_remaining == 0) this->consume_each(nproc+1);
+        else this->consume_each(nproc);
         return nproc;
     }
 
@@ -117,8 +118,9 @@ int unguard_tagged_stream_impl<IN_T>::general_work(int noutput_items,
             tag.offset += this->nitems_written(0);
             this->add_item_tag(0, tag);
         }
-        this->consume_each(drop+nproc+1);
         d_remaining -= nproc;
+        if(d_remaining == 0) this->consume_each(drop+nproc+1);
+        else this->consume_each(drop+nproc);
         return nproc;
     }
 }
