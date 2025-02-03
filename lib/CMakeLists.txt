@@ -14,7 +14,8 @@ include(GrPlatform) #define LIB_SUFFIX
 list(APPEND sprobe_sources
     sample_counter_impl.cc
     unguard_tagged_stream_impl.cc
-    guard_tagged_stream_impl.cc)
+    guard_tagged_stream_impl.cc
+    tagged_stream_buffer_filler_impl.cc)
 
 set(sprobe_sources
     "${sprobe_sources}"

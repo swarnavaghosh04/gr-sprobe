@@ -27,7 +27,8 @@ include(GrPybind)
 list(APPEND sprobe_python_files
     sample_counter_python.cc
     unguard_tagged_stream_python.cc
-    guard_tagged_stream_python.cc python_bindings.cc)
+    guard_tagged_stream_python.cc
+    tagged_stream_buffer_filler_python.cc python_bindings.cc)
 
 gr_pybind_make_oot(sprobe ../../.. gr::sprobe "${sprobe_python_files}")
 

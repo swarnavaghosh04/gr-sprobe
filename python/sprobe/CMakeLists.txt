@@ -37,3 +37,4 @@ add_custom_target(
 GR_ADD_TEST(qa_sample_counter ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_sample_counter.py)
 GR_ADD_TEST(qa_stream_test ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_stream_test.py)
 GR_ADD_TEST(qa_guard_tagged_stream ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_guard_tagged_stream.py)
+GR_ADD_TEST(qa_tagged_stream_buffer_filler ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_tagged_stream_buffer_filler.py)

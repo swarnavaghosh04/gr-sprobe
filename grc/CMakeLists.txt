@@ -9,4 +9,5 @@
 install(FILES
     sprobe_sample_counter.block.yml
     sprobe_unguard_tagged_stream.block.yml
-    sprobe_guard_tagged_stream.block.yml DESTINATION share/gnuradio/grc/blocks)
+    sprobe_guard_tagged_stream.block.yml
+    sprobe_tagged_stream_buffer_filler.block.yml DESTINATION share/gnuradio/grc/blocks)
