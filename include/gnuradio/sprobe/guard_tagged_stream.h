@@ -33,10 +33,12 @@ public:
      * class. sprobe::guard_tagged_stream::make is the public interface for
      * creating new instances.
      */
-    static sptr make(const std::string& length_tag_key = "packet_len", const std::string& end_tag_key = "packet_end");
+    static sptr make(const std::string& length_tag_key = "packet_len", const std::string& end_tag_key = "packet_end", int tail_len = 1);
 
     virtual const std::string& end_tag_key() const = 0;
+    virtual int tail_len() const = 0;
     virtual void set_end_tag_key(const std::string& end_tag_key) = 0;
+    virtual void set_tail_len(int tail_len) = 0;
 };
 
 typedef guard_tagged_stream<gr_complex> guard_tagged_stream_c;

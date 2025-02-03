@@ -25,6 +25,10 @@ parameters:
   label: End Tag Key
   dtype: string
   default: packet_end
+- id: tail_len
+  label: Tail Length
+  dtype: int
+  default: 1
 
 #  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
 #  Keys include:
@@ -43,16 +47,18 @@ outputs:
 
 templates:
   imports: from gnuradio import sprobe
-  make: sprobe.guard_tagged_stream_${in_type.fcn}(${length_tag_key}, ${end_tag_key})
+  make: sprobe.guard_tagged_stream_${in_type.fcn}(${length_tag_key}, ${end_tag_key}, ${tail_len})
   callbacks:
   - set_end_tag_key(${end_tag_key})
+  - set_tail_len(${tail_len})
 
 cpp_templates:
   includes: ['#include <gnuradio/sprobe/guard_tagged_stream.h>']
   declarations: 'sprobe::guard_tagged_stream_${in_type.fcn}::sptr ${id};'
-  make: 'this->${id} = sprobe::guard_tagged_stream_${in_type.fcn}::make(${length_tag_key}, ${end_tag_key});'
+  make: 'this->${id} = sprobe::guard_tagged_stream_${in_type.fcn}::make(${length_tag_key}, ${end_tag_key}, ${tail_len});'
   callbacks:
   - set_end_tag_key(${end_tag_key})
+  - set_tail_len(${tail_len})
 
 #  'file_format' specifies the version of the GRC yml format used in the file
 #  and should usually not be changed.

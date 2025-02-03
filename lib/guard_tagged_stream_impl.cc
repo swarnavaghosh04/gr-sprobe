@@ -12,21 +12,22 @@ namespace gr {
 namespace sprobe {
 
 template<class IN_T>
-typename guard_tagged_stream<IN_T>::sptr guard_tagged_stream<IN_T>::make(const std::string& length_tag_key, const std::string& end_tag_key)
+typename guard_tagged_stream<IN_T>::sptr guard_tagged_stream<IN_T>::make(const std::string& length_tag_key, const std::string& end_tag_key, int tail_len)
 {
-    return gnuradio::make_block_sptr<guard_tagged_stream_impl<IN_T>>(length_tag_key, end_tag_key);
+    return gnuradio::make_block_sptr<guard_tagged_stream_impl<IN_T>>(length_tag_key, end_tag_key, tail_len);
 }
 
 /*
  * The private constructor
  */
 template<class IN_T>
-guard_tagged_stream_impl<IN_T>::guard_tagged_stream_impl(const std::string& length_tag_key, const std::string& end_tag_key):
+guard_tagged_stream_impl<IN_T>::guard_tagged_stream_impl(const std::string& length_tag_key, const std::string& end_tag_key, int tail_len):
     gr::tagged_stream_block("guard_tagged_stream",
         gr::io_signature::make(1, 1, sizeof(IN_T)),
         gr::io_signature::make(1, 1, sizeof(IN_T)),
         length_tag_key),
-    d_end_tag_key(end_tag_key)
+    d_end_tag_key(end_tag_key),
+    d_tail_len(tail_len < 1 ? 1 : tail_len)
 {
     this->set_tag_propagation_policy(gr::block::TPP_DONT);
 }
@@ -40,18 +41,22 @@ guard_tagged_stream_impl<IN_T>::~guard_tagged_stream_impl() {}
 template<class IN_T>
 const std::string& guard_tagged_stream_impl<IN_T>::end_tag_key() const { return d_end_tag_key; }
 template<class IN_T>
+int guard_tagged_stream_impl<IN_T>::tail_len() const { return d_tail_len; }
+template<class IN_T>
 void guard_tagged_stream_impl<IN_T>::set_end_tag_key(const std::string& end_tag_key){ d_end_tag_key = end_tag_key; }
+template<class IN_T>
+void guard_tagged_stream_impl<IN_T>::set_tail_len(int tail_len){ d_tail_len = tail_len < 1 ? 1 : tail_len; }
 
 template<class IN_T>
 int guard_tagged_stream_impl<IN_T>::calculate_output_stream_length(
     const gr_vector_int& ninput_items)
 {
-    return ninput_items[0]+1;
+    return ninput_items[0]+d_tail_len;
 }
 
 template<class IN_T>
 void guard_tagged_stream_impl<IN_T>::update_length_tags(int n_produced, int n_ports){
-    tagged_stream_block::update_length_tags(n_produced-1, n_ports);
+    tagged_stream_block::update_length_tags(n_produced-d_tail_len, n_ports);
 }
 
 template<class IN_T>
@@ -64,14 +69,14 @@ int guard_tagged_stream_impl<IN_T>::work(int noutput_items,
     auto out = static_cast<IN_T*>(output_items[0]);
     int nin = ninput_items[0];
 
-    if(noutput_items < nin+1) return 0;
+    if(noutput_items < nin+d_tail_len) return 0;
 
-    memcpy(out, in, nin*sizeof(IN_T));
-    out[nin] = static_cast<IN_T>(0);
+    std::memcpy(out, in, nin*sizeof(IN_T));
+    std::fill(out+nin, out+nin+d_tail_len, static_cast<IN_T>(0));
     this->add_item_tag(0,
         this->nitems_written(0)+nin,
         pmt::intern(d_end_tag_key),
-        pmt::from_long(1),
+        pmt::from_long(d_tail_len),
         pmt::PMT_F);
 
     std::vector<tag_t> tags;
@@ -82,7 +87,7 @@ int guard_tagged_stream_impl<IN_T>::work(int noutput_items,
         this->add_item_tag(0, tag);
     });
 
-    return nin+1;
+    return nin+d_tail_len;
 }
 
 template class guard_tagged_stream<gr_complex>;
