@@ -17,24 +17,27 @@ template<class IN_T>
 class guard_tagged_stream_impl : public guard_tagged_stream<IN_T>
 {
 private:
+    std::string d_length_tag_key;
     std::string d_end_tag_key;
     int d_tail_len;
-
-protected:
-    int calculate_output_stream_length(const gr_vector_int& ninput_items) override;
-    void update_length_tags(int n_produced, int n_ports) override;
+    int d_packet_remaining;
+    int d_tail_remaining;
 
 public:
     guard_tagged_stream_impl(const std::string& length_tag_key, const std::string& end_tag_key, int tail_len);
     ~guard_tagged_stream_impl();
 
+    const std::string& length_tag_key() const override;
     const std::string& end_tag_key() const override;
     int tail_len() const override;
+    void set_length_tag_key(const std::string& length_tag_key) override;
     void set_end_tag_key(const std::string& end_tag_key) override;
     void set_tail_len(int tail_len) override;
 
     // Where all the action really happens
-    int work(int noutput_items,
+    void forecast(int noutput_items, gr_vector_int& ninput_items_required);
+
+    int general_work(int noutput_items,
              gr_vector_int& ninput_items,
              gr_vector_const_void_star& input_items,
              gr_vector_void_star& output_items);

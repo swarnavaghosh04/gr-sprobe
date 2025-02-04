@@ -20,7 +20,7 @@ namespace sprobe {
  *
  */
 template<class IN_T>
-class SPROBE_API guard_tagged_stream : virtual public gr::tagged_stream_block
+class SPROBE_API guard_tagged_stream : virtual public gr::block
 {
 public:
     typedef std::shared_ptr<guard_tagged_stream<IN_T>> sptr;
@@ -35,8 +35,10 @@ public:
      */
     static sptr make(const std::string& length_tag_key = "packet_len", const std::string& end_tag_key = "packet_end", int tail_len = 1);
 
+    virtual const std::string& length_tag_key() const = 0;
     virtual const std::string& end_tag_key() const = 0;
     virtual int tail_len() const = 0;
+    virtual void set_length_tag_key(const std::string& end_tag_key) = 0;
     virtual void set_end_tag_key(const std::string& end_tag_key) = 0;
     virtual void set_tail_len(int tail_len) = 0;
 };
